@@ -11,30 +11,30 @@ class Form extends Component {
       cardImage,
       cardRare,
       cardTrunfo,
-      hasTrunfo,
-      isSaveButtonDisabled,
-      onInputChange,
-      onSaveButtonClick } = this.props;
+      // hasTrunfo,
+      // isSaveButtonDisabled,
+      // onSaveButtonClick,
+      onInputChange } = this.props;
     return (
       <div>
         <h2>Adicione uma nova carta</h2>
         <form>
-          <label htmlFor="name-input">
+          <label htmlFor="cardName">
             Nome da carta:
             <input
               type="text"
-              name="name-input"
-              id="name-input"
+              name="cardName"
+              id="cardName"
               data-testid="name-input"
               value={ cardName }
               onChange={ onInputChange }
             />
           </label>
           Descrição da carta:
-          <label htmlFor="description-input">
+          <label htmlFor="cardDescription">
             <textarea
-              name="description-input"
-              id="description-input"
+              name="cardDescription"
+              id="cardDescription"
               cols="30"
               rows="10"
               data-testid="description-input"
@@ -42,54 +42,54 @@ class Form extends Component {
               onChange={ onInputChange }
             />
           </label>
-          <label htmlFor="attr1-input">
+          <label htmlFor="cardAttr1">
             Placeholder attr1:
             <input
               type="number"
-              name="attr1-input"
-              id="attr1-input"
+              name="cardAttr1"
+              id="cardAttr1"
               data-testid="attr1-input"
               value={ cardAttr1 }
               onChange={ onInputChange }
             />
           </label>
-          <label htmlFor="attr2-input">
+          <label htmlFor="cardAttr2">
             Placeholder attr2:
             <input
               type="number"
-              name="attr2-input"
-              id="attr2-input"
+              name="cardAttr2"
+              id="cardAttr2"
               data-testid="attr2-input"
               value={ cardAttr2 }
               onChange={ onInputChange }
             />
           </label>
-          <label htmlFor="attr3-input">
+          <label htmlFor="cardAttr3">
             Placeholder attr3:
             <input
               type="number"
-              name="attr3-input"
-              id="attr3-input"
+              name="cardAttr3"
+              id="cardAttr3"
               data-testid="attr3-input"
               value={ cardAttr3 }
               onChange={ onInputChange }
             />
           </label>
-          <label htmlFor="image-input">
-            Nome da carta:
+          <label htmlFor="cardImage">
+            Imagem da carta:
             <input
               type="text"
-              name="image-input"
-              id="image-input"
+              name="cardImage"
+              id="cardImage"
               data-testid="image-input"
               value={ cardImage }
               onChange={ onInputChange }
             />
           </label>
-          <label htmlFor="rare-input">
+          <label htmlFor="cardRare">
             <select
-              name="rare-input"
-              id="rare-input"
+              name="cardRare"
+              id="cardRare"
               data-testid="rare-input"
               value={ cardRare }
               onChange={ onInputChange }
@@ -99,12 +99,12 @@ class Form extends Component {
               <option value="muito raro">Muito raro</option>
             </select>
           </label>
-          <label htmlFor="trunfo-input">
+          <label htmlFor="cardTrunfo">
             Super Trunfo?
             <input
               type="checkbox"
-              name="trunfo-input"
-              id="trunfo-input"
+              name="cardTrunfo"
+              id="cardTrunfo"
               data-testid="trunfo-input"
               checked={ cardTrunfo }
               onChange={ onInputChange }
@@ -113,8 +113,8 @@ class Form extends Component {
           <button
             type="submit"
             data-testid="save-button"
-            disabled={ isSaveButtonDisabled }
-            onClick={ onSaveButtonClick }
+            // disabled={ isSaveButtonDisabled }
+            // onClick={ onSaveButtonClick }
           >
             Salvar
           </button>
@@ -133,10 +133,10 @@ Form.propTypes = {
   cardImage: PropTypes.string.isRequired,
   cardRare: PropTypes.string.isRequired,
   cardTrunfo: PropTypes.bool.isRequired,
-  hasTrunfo: PropTypes.bool.isRequired,
-  isSaveButtonDisabled: PropTypes.bool.isRequired,
+  // hasTrunfo: PropTypes.bool.isRequired,
+  // isSaveButtonDisabled: PropTypes.bool.isRequired,
   onInputChange: PropTypes.func.isRequired,
-  onSaveButtonClick: PropTypes.func.isRequired,
+  // onSaveButtonClick: PropTypes.func.isRequired,
 };
 
 export default Form;
