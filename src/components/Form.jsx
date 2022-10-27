@@ -11,10 +11,28 @@ class Form extends Component {
       cardImage,
       cardRare,
       cardTrunfo,
-      // hasTrunfo,
+      hasTrunfo,
       isSaveButtonDisabled,
       onSaveButtonClick,
       onInputChange } = this.props;
+
+    let trunfoPicker;
+    if (hasTrunfo) {
+      trunfoPicker = (<spam>Você já tem um Super Trunfo em seu baralho</spam>);
+    } else {
+      trunfoPicker = (
+        <label htmlFor="cardTrunfo">
+          Super Trunfo?
+          <input
+            type="checkbox"
+            name="cardTrunfo"
+            id="cardTrunfo"
+            data-testid="trunfo-input"
+            checked={ cardTrunfo }
+            onChange={ onInputChange }
+          />
+        </label>);
+    }
     return (
       <div>
         <h2>Adicione uma nova carta</h2>
@@ -99,17 +117,7 @@ class Form extends Component {
               <option value="muito raro">Muito raro</option>
             </select>
           </label>
-          <label htmlFor="cardTrunfo">
-            Super Trunfo?
-            <input
-              type="checkbox"
-              name="cardTrunfo"
-              id="cardTrunfo"
-              data-testid="trunfo-input"
-              checked={ cardTrunfo }
-              onChange={ onInputChange }
-            />
-          </label>
+          { trunfoPicker }
           <button
             type="button"
             data-testid="save-button"
@@ -133,7 +141,7 @@ Form.propTypes = {
   cardImage: PropTypes.string.isRequired,
   cardRare: PropTypes.string.isRequired,
   cardTrunfo: PropTypes.bool.isRequired,
-  // hasTrunfo: PropTypes.bool.isRequired,
+  hasTrunfo: PropTypes.bool.isRequired,
   isSaveButtonDisabled: PropTypes.bool.isRequired,
   onInputChange: PropTypes.func.isRequired,
   onSaveButtonClick: PropTypes.func.isRequired,

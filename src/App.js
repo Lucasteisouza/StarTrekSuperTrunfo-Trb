@@ -12,6 +12,7 @@ class App extends React.Component {
     cardImage: '',
     cardRare: 'normal',
     cardTrunfo: false,
+    hasTrunfo: false,
     isSaveButtonDisabled: true,
     deck: [],
   };
@@ -64,7 +65,8 @@ class App extends React.Component {
       cardAttr2,
       cardAttr3,
       cardImage,
-      cardRare } = this.state;
+      cardRare,
+      cardTrunfo } = this.state;
     const newCard = {
       cardName,
       cardDescription,
@@ -73,6 +75,7 @@ class App extends React.Component {
       cardAttr3,
       cardImage,
       cardRare,
+      cardTrunfo,
     };
     this.setState((prevState) => ({
       deck: [...prevState.deck, newCard],
@@ -85,6 +88,14 @@ class App extends React.Component {
       cardRare: 'normal',
       cardTrunfo: false,
       isSaveButtonDisabled: true,
+    }), (() => {
+      const { deck } = this.state;
+      const alreadyTrunfo = deck.find((element) => element.cardTrunfo === true);
+      if (alreadyTrunfo) {
+        this.setState({
+          hasTrunfo: true,
+        });
+      }
     }));
   };
 
@@ -98,6 +109,7 @@ class App extends React.Component {
       cardRare,
       cardTrunfo,
       isSaveButtonDisabled,
+      hasTrunfo,
     } = this.state;
 
     return (
@@ -112,7 +124,7 @@ class App extends React.Component {
           cardImage={ cardImage }
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
-          // hasTrunfo={ hasTrunfo }
+          hasTrunfo={ hasTrunfo }
           isSaveButtonDisabled={ isSaveButtonDisabled }
           onInputChange={ this.onInputChange }
           onSaveButtonClick={ this.onSaveButtonClick }
