@@ -16,6 +16,7 @@ class App extends React.Component {
     isSaveButtonDisabled: true,
     deck: [],
     nameFilter: '',
+    rareFilter: '',
   };
 
   validator = () => {
@@ -127,6 +128,7 @@ class App extends React.Component {
       hasTrunfo,
       deck,
       nameFilter,
+      rareFilter,
     } = this.state;
 
     return (
@@ -168,8 +170,28 @@ class App extends React.Component {
             onChange={ this.onInputChange }
           />
         </label>
+        <label htmlFor="rareFilter">
+          Filtrar por raridade:
+          <select
+            name="rareFilter"
+            id="rareFilter"
+            onChange={ this.onInputChange }
+            data-testid="rare-filter"
+          >
+            <option value="todas">Todas</option>
+            <option value="normal">Normal</option>
+            <option value="raro">Raro</option>
+            <option value="muito raro">Muito raro</option>
+          </select>
+        </label>
 
         { deck
+          .filter((card) => {
+            const rarity = (rareFilter === 'todas') ? '' : rareFilter;
+            if (rarity === 'raro') {
+              return card.cardRare === rarity;
+            } return card.cardRare.includes(rarity);
+          })
           .filter((card) => card.cardName.includes(nameFilter))
           .map((card) => (<Card
             key={ card.cardName }
