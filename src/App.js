@@ -74,20 +74,18 @@ class App extends React.Component {
       cardImage,
       cardRare,
     };
-    this.setState((prevState) => {
-      return {
-        deck: [...prevState.deck, newCard],
-        cardName: '',
-        cardDescription: '',
-        cardAttr1: '0',
-        cardAttr2: '0',
-        cardAttr3: '0',
-        cardImage: '',
-        cardRare: 'normal',
-        cardTrunfo: false,
-        isSaveButtonDisabled: true,
-      };
-    });
+    this.setState((prevState) => ({
+      deck: [...prevState.deck, newCard],
+      cardName: '',
+      cardDescription: '',
+      cardAttr1: '0',
+      cardAttr2: '0',
+      cardAttr3: '0',
+      cardImage: '',
+      cardRare: 'normal',
+      cardTrunfo: false,
+      isSaveButtonDisabled: true,
+    }));
   };
 
   render() {
