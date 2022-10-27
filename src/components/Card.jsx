@@ -10,10 +10,21 @@ class Card extends Component {
       cardAttr3,
       cardImage,
       cardRare,
-      cardTrunfo } = this.props;
+      cardTrunfo,
+      preview,
+      onDeleteBtnClick } = this.props;
+
+    const deleteBtn = (
+      <button
+        type="button"
+        data-testid="delete-button"
+        onClick={ onDeleteBtnClick }
+      >
+        Excluir
+      </button>);
     return (
       <div>
-        <h4 data-testid="name-card">{ cardName }</h4>
+        <h3 data-testid="name-card">{ cardName }</h3>
         <img data-testid="image-card" src={ cardImage } alt={ cardName } />
         <p data-testid="description-card">{ cardDescription }</p>
         <p data-testid="attr1-card">{`Placeholder Attr1: ${cardAttr1}`}</p>
@@ -23,6 +34,7 @@ class Card extends Component {
         {
           cardTrunfo && <p data-testid="trunfo-card">Super Trunfo</p>
         }
+        { !preview && deleteBtn}
       </div>
     );
   }
@@ -37,6 +49,8 @@ Card.propTypes = {
   cardImage: PropTypes.string.isRequired,
   cardRare: PropTypes.string.isRequired,
   cardTrunfo: PropTypes.bool.isRequired,
+  preview: PropTypes.bool.isRequired,
+  onDeleteBtnClick: PropTypes.func.isRequired,
 };
 
 export default Card;

@@ -99,6 +99,20 @@ class App extends React.Component {
     }));
   };
 
+  onDeleteBtnClick = ({ target }) => {
+    const { deck } = this.state;
+    const selectedCardName = target.parentNode.childNodes[0].innerHTML;
+    const filteredDeck = deck.filter((card) => card.cardName !== selectedCardName);
+    let deckHasTrunfo = false;
+    if (filteredDeck.find((card) => card.cardTrunfo !== undefined)) {
+      deckHasTrunfo = true;
+    }
+    this.setState({
+      deck: filteredDeck,
+      hasTrunfo: deckHasTrunfo,
+    });
+  };
+
   render() {
     const { cardName,
       cardDescription,
@@ -139,6 +153,8 @@ class App extends React.Component {
           cardImage={ cardImage }
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
+          preview
+          onDeleteBtnClick={ this.onDeleteBtnClick }
         />
         { deck.map((card) => (<Card
           key={ card.cardName }
@@ -150,6 +166,8 @@ class App extends React.Component {
           cardImage={ card.cardImage }
           cardRare={ card.cardRare }
           cardTrunfo={ card.cardTrunfo }
+          preview={ false }
+          onDeleteBtnClick={ this.onDeleteBtnClick }
         />))}
       </div>
     );
