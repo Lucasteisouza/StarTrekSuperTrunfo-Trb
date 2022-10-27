@@ -6,13 +6,14 @@ class App extends React.Component {
   state = {
     cardName: '',
     cardDescription: '',
-    cardAttr1: 0,
-    cardAttr2: 0,
-    cardAttr3: 0,
+    cardAttr1: '0',
+    cardAttr2: '0',
+    cardAttr3: '0',
     cardImage: '',
     cardRare: 'normal',
     cardTrunfo: false,
     isSaveButtonDisabled: true,
+    deck: [],
   };
 
   validator = () => {
@@ -30,9 +31,9 @@ class App extends React.Component {
     const totalCap = 210;
     const attrCap = 90;
     const lowCap = 0;
-    const parsedAtt1 = parseInt(cardAttr1);
-    const parsedAtt2 = parseInt(cardAttr2);
-    const parsedAtt3 = parseInt(cardAttr3);
+    const parsedAtt1 = parseInt(cardAttr1, 10);
+    const parsedAtt2 = parseInt(cardAttr2, 10);
+    const parsedAtt3 = parseInt(cardAttr3, 10);
     const sum = parsedAtt1 + parsedAtt2 + parsedAtt3;
     const validCaps = (sum <= totalCap
       && parsedAtt1 <= attrCap
@@ -54,6 +55,39 @@ class App extends React.Component {
     this.setState({
       [name]: value,
     }, this.validator);
+  };
+
+  onSaveButtonClick = () => {
+    const { cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare } = this.state;
+    const newCard = {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+    };
+    this.setState((prevState) => {
+      return {
+        deck: [...prevState.deck, newCard],
+        cardName: '',
+        cardDescription: '',
+        cardAttr1: '0',
+        cardAttr2: '0',
+        cardAttr3: '0',
+        cardImage: '',
+        cardRare: 'normal',
+        cardTrunfo: false,
+        isSaveButtonDisabled: true,
+      };
+    });
   };
 
   render() {
@@ -83,7 +117,7 @@ class App extends React.Component {
           // hasTrunfo={ hasTrunfo }
           isSaveButtonDisabled={ isSaveButtonDisabled }
           onInputChange={ this.onInputChange }
-          // onSaveButtonClick={ this.onSaveButtonClick }
+          onSaveButtonClick={ this.onSaveButtonClick }
         />
         <Card
           cardName={ cardName }
