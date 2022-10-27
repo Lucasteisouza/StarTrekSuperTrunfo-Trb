@@ -15,6 +15,7 @@ class App extends React.Component {
     hasTrunfo: false,
     isSaveButtonDisabled: true,
     deck: [],
+    nameFilter: '',
   };
 
   validator = () => {
@@ -125,6 +126,7 @@ class App extends React.Component {
       isSaveButtonDisabled,
       hasTrunfo,
       deck,
+      nameFilter,
     } = this.state;
 
     return (
@@ -156,19 +158,32 @@ class App extends React.Component {
           preview
           onDeleteBtnClick={ this.onDeleteBtnClick }
         />
-        { deck.map((card) => (<Card
-          key={ card.cardName }
-          cardName={ card.cardName }
-          cardDescription={ card.cardDescription }
-          cardAttr1={ card.cardAttr1 }
-          cardAttr2={ card.cardAttr2 }
-          cardAttr3={ card.cardAttr3 }
-          cardImage={ card.cardImage }
-          cardRare={ card.cardRare }
-          cardTrunfo={ card.cardTrunfo }
-          preview={ false }
-          onDeleteBtnClick={ this.onDeleteBtnClick }
-        />))}
+        <label htmlFor="nameFilter">
+          Filtrar por nome:
+          <input
+            type="text"
+            name="nameFilter"
+            id="nameFilter"
+            data-testid="name-filter"
+            onChange={ this.onInputChange }
+          />
+        </label>
+
+        { deck
+          .filter((card) => card.cardName.includes(nameFilter))
+          .map((card) => (<Card
+            key={ card.cardName }
+            cardName={ card.cardName }
+            cardDescription={ card.cardDescription }
+            cardAttr1={ card.cardAttr1 }
+            cardAttr2={ card.cardAttr2 }
+            cardAttr3={ card.cardAttr3 }
+            cardImage={ card.cardImage }
+            cardRare={ card.cardRare }
+            cardTrunfo={ card.cardTrunfo }
+            preview={ false }
+            onDeleteBtnClick={ this.onDeleteBtnClick }
+          />))}
       </div>
     );
   }
