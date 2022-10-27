@@ -18,7 +18,7 @@ class Form extends Component {
 
     let trunfoPicker;
     if (hasTrunfo) {
-      trunfoPicker = (<spam>Você já tem um Super Trunfo em seu baralho</spam>);
+      trunfoPicker = (<p>Você já tem um Super Trunfo em seu baralho</p>);
     } else {
       trunfoPicker = (
         <label htmlFor="cardTrunfo">
