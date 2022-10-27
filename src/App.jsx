@@ -17,6 +17,7 @@ class App extends React.Component {
     deck: [],
     nameFilter: '',
     rareFilter: '',
+    trunfoFilter: false,
   };
 
   validator = () => {
@@ -129,7 +130,10 @@ class App extends React.Component {
       deck,
       nameFilter,
       rareFilter,
+      trunfoFilter,
     } = this.state;
+
+    const deckFF = trunfoFilter ? deck.filter((card) => card.cardTrunfo) : deck;
 
     return (
       <div>
@@ -166,6 +170,7 @@ class App extends React.Component {
             type="text"
             name="nameFilter"
             id="nameFilter"
+            disabled={ trunfoFilter }
             data-testid="name-filter"
             onChange={ this.onInputChange }
           />
@@ -176,6 +181,7 @@ class App extends React.Component {
             name="rareFilter"
             id="rareFilter"
             onChange={ this.onInputChange }
+            disabled={ trunfoFilter }
             data-testid="rare-filter"
           >
             <option value="todas">Todas</option>
@@ -184,28 +190,40 @@ class App extends React.Component {
             <option value="muito raro">Muito raro</option>
           </select>
         </label>
+        <label htmlFor="trunfoFilter">
+          Mostrar Super Trunfo?
+          <input
+            type="checkbox"
+            name="trunfoFilter"
+            id="trunfoFilter"
+            onChange={ this.onInputChange }
+            data-testid="trunfo-filter"
+          />
+        </label>
 
-        { deck
-          .filter((card) => {
-            const rarity = (rareFilter === 'todas') ? '' : rareFilter;
-            if (rarity === 'raro') {
-              return card.cardRare === rarity;
-            } return card.cardRare.includes(rarity);
-          })
-          .filter((card) => card.cardName.includes(nameFilter))
-          .map((card) => (<Card
-            key={ card.cardName }
-            cardName={ card.cardName }
-            cardDescription={ card.cardDescription }
-            cardAttr1={ card.cardAttr1 }
-            cardAttr2={ card.cardAttr2 }
-            cardAttr3={ card.cardAttr3 }
-            cardImage={ card.cardImage }
-            cardRare={ card.cardRare }
-            cardTrunfo={ card.cardTrunfo }
-            preview={ false }
-            onDeleteBtnClick={ this.onDeleteBtnClick }
-          />))}
+        {
+          deckFF
+            .filter((card) => {
+              const rarity = (rareFilter === 'todas') ? '' : rareFilter;
+              if (rarity === 'raro') {
+                return card.cardRare === rarity;
+              } return card.cardRare.includes(rarity);
+            })
+            .filter((card) => card.cardName.includes(nameFilter))
+            .map((card) => (<Card
+              key={ card.cardName }
+              cardName={ card.cardName }
+              cardDescription={ card.cardDescription }
+              cardAttr1={ card.cardAttr1 }
+              cardAttr2={ card.cardAttr2 }
+              cardAttr3={ card.cardAttr3 }
+              cardImage={ card.cardImage }
+              cardRare={ card.cardRare }
+              cardTrunfo={ card.cardTrunfo }
+              preview={ false }
+              onDeleteBtnClick={ this.onDeleteBtnClick }
+            />))
+        }
       </div>
     );
   }
