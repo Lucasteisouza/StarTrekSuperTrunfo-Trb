@@ -21,9 +21,10 @@ class Form extends Component {
       trunfoPicker = (<p>Você já tem um Super Trunfo em seu baralho</p>);
     } else {
       trunfoPicker = (
-        <label htmlFor="cardTrunfo">
+        <label htmlFor="cardTrunfo" className="form-check-label">
           Super Trunfo?
           <input
+            className="form-check-input"
             type="checkbox"
             name="cardTrunfo"
             id="cardTrunfo"
@@ -34,12 +35,13 @@ class Form extends Component {
         </label>);
     }
     return (
-      <div>
+      <div className="card-form-container">
         <h2>Adicione uma nova carta</h2>
-        <form>
-          <label htmlFor="cardName">
+        <form className="row-mb-3">
+          <label htmlFor="cardName" className="form-label">
             Nome da carta:
             <input
+              className="form-control"
               type="text"
               name="cardName"
               id="cardName"
@@ -49,20 +51,22 @@ class Form extends Component {
             />
           </label>
           Descrição da carta:
-          <label htmlFor="cardDescription">
+          <label htmlFor="cardDescription" className="form-label">
             <textarea
+              className="form-control"
               name="cardDescription"
               id="cardDescription"
               cols="30"
-              rows="10"
+              rows="2"
               data-testid="description-input"
               value={ cardDescription }
               onChange={ onInputChange }
             />
           </label>
-          <label htmlFor="cardAttr1">
-            Placeholder attr1:
+          <label htmlFor="cardAttr1" className="form-label">
+            Inteligência:
             <input
+              className="form-control num-form-control"
               type="number"
               name="cardAttr1"
               id="cardAttr1"
@@ -71,9 +75,10 @@ class Form extends Component {
               onChange={ onInputChange }
             />
           </label>
-          <label htmlFor="cardAttr2">
-            Placeholder attr2:
+          <label htmlFor="cardAttr2" className="form-label">
+            Liderança:
             <input
+              className="form-control num-form-control"
               type="number"
               name="cardAttr2"
               id="cardAttr2"
@@ -82,9 +87,10 @@ class Form extends Component {
               onChange={ onInputChange }
             />
           </label>
-          <label htmlFor="cardAttr3">
-            Placeholder attr3:
+          <label htmlFor="cardAttr3" className="form-label">
+            Diplomacia:
             <input
+              className="form-control num-form-control"
               type="number"
               name="cardAttr3"
               id="cardAttr3"
@@ -93,9 +99,10 @@ class Form extends Component {
               onChange={ onInputChange }
             />
           </label>
-          <label htmlFor="cardImage">
+          <label htmlFor="cardImage" className="form-label">
             Imagem da carta:
             <input
+              className="form-control form-control"
               type="text"
               name="cardImage"
               id="cardImage"
@@ -104,8 +111,10 @@ class Form extends Component {
               onChange={ onInputChange }
             />
           </label>
-          <label htmlFor="cardRare">
+          <label htmlFor="cardRare" className="form-label">
+            Raridade: 
             <select
+              className="form-select num-form-control"
               name="cardRare"
               id="cardRare"
               data-testid="rare-input"
@@ -117,15 +126,18 @@ class Form extends Component {
               <option value="muito raro">Muito raro</option>
             </select>
           </label>
-          { trunfoPicker }
-          <button
-            type="button"
-            data-testid="save-button"
-            disabled={ isSaveButtonDisabled }
-            onClick={ onSaveButtonClick }
-          >
-            Salvar
-          </button>
+          <div className="form-footer">
+            { trunfoPicker }
+            <button
+              className="btn btn-primary"
+              type="button"
+              data-testid="save-button"
+              disabled={ isSaveButtonDisabled }
+              onClick={ onSaveButtonClick }
+            >
+              Salvar
+            </button>
+          </div>
         </form>
       </div>
     );

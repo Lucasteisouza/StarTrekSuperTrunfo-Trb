@@ -1,0 +1,178 @@
+@font-face {
+  font-family: star_trek_future_regular;
+  src: url('../images/star_trek_future.woff') format('woff');
+}
+
+body {
+  text-align: center;
+}
+
+.master {
+  align-items: center;
+  background-image: url('../images/STbg.jpg');
+  background-size: cover;
+  color: black;
+  display: flex;
+  flex-direction: column;
+}
+
+.master h1 {
+  color: yellow;
+  font-family: star_trek_future_regular;
+  font-size: 800%;
+}
+
+.submaster {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.deck-builder-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.card-form-container {
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  width: 45%;
+  align-items: center;
+}
+
+.row-mb-3 {
+  width: 95%;
+}
+
+.prev-card-container {
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+
+.prev-card {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 70%;
+  padding: 10px;
+  width: 100%;
+}
+
+.normal {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.raro {
+  background-color: rgba(50, 50, 220, 0.8);
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.muito {
+  background-color: rgba(121, 22, 121, 0.8);
+  border-radius: 20px;
+  padding: 20px;
+}
+
+
+
+.prev-card img {
+  border-radius: 20px;
+  height: 300px;
+  width: 400px;
+  opacity: 0.95;
+}
+
+.prev-card p {
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.num-form-label {
+  display: inline-block;
+}
+
+.num-form-control {
+  display: inline-block;
+  width: 80%;
+}
+
+.btn {
+  width: 40%;
+}
+
+.form-footer {
+  display: flex;
+  justify-content: space-around;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.grimoire-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  color: white;
+}
+
+.rare-filter {
+  margin: 0 30px 8px;
+}
+
+.filter-title {
+  margin-right: 20px;
+  margin-top: 20px;
+}
+
+.deck-container {
+  background-color: lightgray;
+  border-radius: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 90%;
+}
+
+.deck-container .prev-card {
+  background-color: darkgray;
+  border-radius: 20px;
+  margin: 15px;
+  width: 30%;
+}
+
+.deck-container .img-container {
+  padding: 5%;
+}
+
+.deck-container img {
+  height: 250px;
+  width: 310px;
+}
+
+.true {
+  background-color: goldenrod;
+  width: 100%;
+  border-radius: 10px;
+}

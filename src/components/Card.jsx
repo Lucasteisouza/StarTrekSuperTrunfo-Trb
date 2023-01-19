@@ -16,6 +16,7 @@ class Card extends Component {
 
     const deleteBtn = (
       <button
+        className="btn btn-danger"
         type="button"
         data-testid="delete-button"
         onClick={ onDeleteBtnClick }
@@ -23,16 +24,38 @@ class Card extends Component {
         Excluir
       </button>);
     return (
-      <div>
-        <h3 data-testid="name-card">{ cardName }</h3>
-        <img data-testid="image-card" src={ cardImage } alt={ cardName } />
-        <p data-testid="description-card">{ cardDescription }</p>
-        <p data-testid="attr1-card">{`Placeholder Attr1: ${cardAttr1}`}</p>
-        <p data-testid="attr2-card">{`Placeholder Attr2: ${cardAttr2}`}</p>
-        <p data-testid="attr3-card">{`Placeholder Attr3: ${cardAttr3}`}</p>
-        <p data-testid="rare-card">{`Raridade: ${cardRare}`}</p>
+      <div className="prev-card">
+        <h3 className="card-content" data-testid="name-card">{ cardName }</h3>
+        <div className={ cardRare }>
+          <img data-testid="image-card" src={ cardImage } alt={ cardName } />
+        </div>
+        <p
+          className="card-content"
+          data-testid="description-card"
+        >
+          { cardDescription }
+        </p>
+        <p
+          className="card-content"
+          data-testid="attr1-card"
+        >
+          {`Inteligência: ${cardAttr1}`}
+        </p>
+        <p
+          className="card-content"
+          data-testid="attr2-card"
+        >
+          {`Liderança: ${cardAttr2}`}
+        </p>
+        <p
+          className="card-content"
+          data-testid="attr3-card"
+        >
+          {`Diplomacia: ${cardAttr3}`}
+        </p>
+        <p className="card-content" data-testid="rare-card">{`Raridade: ${cardRare}`}</p>
         {
-          cardTrunfo && <p data-testid="trunfo-card">Super Trunfo</p>
+          cardTrunfo && <p data-testid="trunfo-card" className={ cardTrunfo.toString() }>Super Trunfo</p>
         }
         { !preview && deleteBtn}
       </div>

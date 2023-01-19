@@ -1,6 +1,8 @@
 import React from 'react';
 import Card from './components/Card';
 import Form from './components/Form';
+import 'bootstrap/dist/css/bootstrap.css';
+import './App.css';
 
 class App extends React.Component {
   state = {
@@ -136,94 +138,110 @@ class App extends React.Component {
     const deckFF = trunfoFilter ? deck.filter((card) => card.cardTrunfo) : deck;
 
     return (
-      <div>
-        <h1>Tryunfo</h1>
-        <Form
-          cardName={ cardName }
-          cardDescription={ cardDescription }
-          cardAttr1={ cardAttr1 }
-          cardAttr2={ cardAttr2 }
-          cardAttr3={ cardAttr3 }
-          cardImage={ cardImage }
-          cardRare={ cardRare }
-          cardTrunfo={ cardTrunfo }
-          hasTrunfo={ hasTrunfo }
-          isSaveButtonDisabled={ isSaveButtonDisabled }
-          onInputChange={ this.onInputChange }
-          onSaveButtonClick={ this.onSaveButtonClick }
-        />
-        <Card
-          cardName={ cardName }
-          cardDescription={ cardDescription }
-          cardAttr1={ cardAttr1 }
-          cardAttr2={ cardAttr2 }
-          cardAttr3={ cardAttr3 }
-          cardImage={ cardImage }
-          cardRare={ cardRare }
-          cardTrunfo={ cardTrunfo }
-          preview
-          onDeleteBtnClick={ this.onDeleteBtnClick }
-        />
-        <label htmlFor="nameFilter">
-          Filtrar por nome:
-          <input
-            type="text"
-            name="nameFilter"
-            id="nameFilter"
-            disabled={ trunfoFilter }
-            data-testid="name-filter"
-            onChange={ this.onInputChange }
-          />
-        </label>
-        <label htmlFor="rareFilter">
-          Filtrar por raridade:
-          <select
-            name="rareFilter"
-            id="rareFilter"
-            onChange={ this.onInputChange }
-            disabled={ trunfoFilter }
-            data-testid="rare-filter"
-          >
-            <option value="todas">Todas</option>
-            <option value="normal">Normal</option>
-            <option value="raro">Raro</option>
-            <option value="muito raro">Muito raro</option>
-          </select>
-        </label>
-        <label htmlFor="trunfoFilter">
-          Mostrar Super Trunfo?
-          <input
-            type="checkbox"
-            name="trunfoFilter"
-            id="trunfoFilter"
-            onChange={ this.onInputChange }
-            data-testid="trunfo-filter"
-          />
-        </label>
-
-        {
-          deckFF
-            .filter((card) => {
-              const rarity = (rareFilter === 'todas') ? '' : rareFilter;
-              if (rarity === 'raro') {
-                return card.cardRare === rarity;
-              } return card.cardRare.includes(rarity);
-            })
-            .filter((card) => card.cardName.includes(nameFilter))
-            .map((card) => (<Card
-              key={ card.cardName }
-              cardName={ card.cardName }
-              cardDescription={ card.cardDescription }
-              cardAttr1={ card.cardAttr1 }
-              cardAttr2={ card.cardAttr2 }
-              cardAttr3={ card.cardAttr3 }
-              cardImage={ card.cardImage }
-              cardRare={ card.cardRare }
-              cardTrunfo={ card.cardTrunfo }
-              preview={ false }
-              onDeleteBtnClick={ this.onDeleteBtnClick }
-            />))
-        }
+      <div className="master">
+        <h1>Star Trek Trunfo</h1>
+        <div className="submaster">
+          <div className="deck-builder-container">
+            <Form
+              cardName={ cardName }
+              cardDescription={ cardDescription }
+              cardAttr1={ cardAttr1 }
+              cardAttr2={ cardAttr2 }
+              cardAttr3={ cardAttr3 }
+              cardImage={ cardImage }
+              cardRare={ cardRare }
+              cardTrunfo={ cardTrunfo }
+              hasTrunfo={ hasTrunfo }
+              isSaveButtonDisabled={ isSaveButtonDisabled }
+              onInputChange={ this.onInputChange }
+              onSaveButtonClick={ this.onSaveButtonClick }
+            />
+            <div className="prev-card-container">
+              <h3>Preview</h3>
+              <Card
+                cardName={ cardName }
+                cardDescription={ cardDescription }
+                cardAttr1={ cardAttr1 }
+                cardAttr2={ cardAttr2 }
+                cardAttr3={ cardAttr3 }
+                cardImage={ cardImage }
+                cardRare={ cardRare }
+                cardTrunfo={ cardTrunfo }
+                preview
+                onDeleteBtnClick={ this.onDeleteBtnClick }
+              />
+            </div>
+          </div>
+          <div className="grimoire-container">
+            <div className="filter-container">
+              <h4 className="filter-title">Filtros de Busca</h4>
+              <label htmlFor="nameFilter" className="form-label">
+                Filtrar por nome:
+                <input
+                  className="form-control"
+                  type="text"
+                  name="nameFilter"
+                  id="nameFilter"
+                  disabled={ trunfoFilter }
+                  data-testid="name-filter"
+                  onChange={ this.onInputChange }
+                />
+              </label>
+              <label htmlFor="rareFilter" className="form-label rare-filter">
+                Filtrar por raridade:
+                <select
+                  className="form-select"
+                  name="rareFilter"
+                  id="rareFilter"
+                  onChange={ this.onInputChange }
+                  disabled={ trunfoFilter }
+                  data-testid="rare-filter"
+                >
+                  <option value="todas">Todas</option>
+                  <option value="normal">Normal</option>
+                  <option value="raro">Raro</option>
+                  <option value="muito raro">Muito raro</option>
+                </select>
+              </label>
+              <label htmlFor="trunfoFilter" className="form-check-label">
+                Mostrar Super Trunfo?
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  name="trunfoFilter"
+                  id="trunfoFilter"
+                  onChange={ this.onInputChange }
+                  data-testid="trunfo-filter"
+                />
+              </label>
+            </div>
+            <div className="deck-container">
+              {
+                deckFF
+                  .filter((card) => {
+                    const rarity = (rareFilter === 'todas') ? '' : rareFilter;
+                    if (rarity === 'raro') {
+                      return card.cardRare === rarity;
+                    } return card.cardRare.includes(rarity);
+                  })
+                  .filter((card) => card.cardName.includes(nameFilter))
+                  .map((card) => (<Card
+                    key={ card.cardName }
+                    cardName={ card.cardName }
+                    cardDescription={ card.cardDescription }
+                    cardAttr1={ card.cardAttr1 }
+                    cardAttr2={ card.cardAttr2 }
+                    cardAttr3={ card.cardAttr3 }
+                    cardImage={ card.cardImage }
+                    cardRare={ card.cardRare }
+                    cardTrunfo={ card.cardTrunfo }
+                    preview={ false }
+                    onDeleteBtnClick={ this.onDeleteBtnClick }
+                  />))
+              }
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
